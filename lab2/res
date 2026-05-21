@@ -1,0 +1,26 @@
+lib
+Epoch 10: Train Loss = 0.5690, Test Loss = 0.5586
+Epoch 20: Train Loss = 0.5130, Test Loss = 0.5064
+Epoch 30: Train Loss = 0.4948, Test Loss = 0.4905
+Epoch 40: Train Loss = 0.4804, Test Loss = 0.4776
+Epoch 50: Train Loss = 0.4696, Test Loss = 0.4683
+Epoch 60: Train Loss = 0.4624, Test Loss = 0.4621
+Epoch 70: Train Loss = 0.4571, Test Loss = 0.4576
+Epoch 80: Train Loss = 0.4528, Test Loss = 0.4540
+Epoch 90: Train Loss = 0.4491, Test Loss = 0.4505
+
+Accuracy: 0.8161666666666667
+
+hand
+Epoch 0: Train Loss=0.9480, Test Loss=0.9320
+Epoch 100: Train Loss=0.6291, Test Loss=0.6228
+Epoch 200: Train Loss=0.6098, Test Loss=0.6037
+Epoch 300: Train Loss=0.5884, Test Loss=0.5827
+Epoch 400: Train Loss=0.5634, Test Loss=0.5588
+Epoch 500: Train Loss=0.5417, Test Loss=0.5387
+Epoch 600: Train Loss=0.5280, Test Loss=0.5266
+Epoch 700: Train Loss=0.5200, Test Loss=0.5195
+Epoch 800: Train Loss=0.5145, Test Loss=0.5148
+Epoch 900: Train Loss=0.5104, Test Loss=0.5112
+
+Accuracy: 0.7996666666666666  доля правильных ответов
