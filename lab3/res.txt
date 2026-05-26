@@ -1,0 +1,47 @@
+
+Обучение RNN
+RNN Epoch 1/10, Loss: 0.227151
+RNN Epoch 2/10, Loss: 0.174224
+RNN Epoch 3/10, Loss: 0.154217
+RNN Epoch 4/10, Loss: 0.140992
+RNN Epoch 5/10, Loss: 0.130901
+RNN Epoch 6/10, Loss: 0.121175
+RNN Epoch 7/10, Loss: 0.111789
+RNN Epoch 8/10, Loss: 0.105179
+RNN Epoch 9/10, Loss: 0.101189
+RNN Epoch 10/10, Loss: 0.098475
+
+Обучение GRU
+GRU Epoch 1/10, Loss: 0.296686
+GRU Epoch 2/10, Loss: 0.195298
+GRU Epoch 3/10, Loss: 0.165840
+GRU Epoch 4/10, Loss: 0.149363
+GRU Epoch 5/10, Loss: 0.138310
+GRU Epoch 6/10, Loss: 0.130242
+GRU Epoch 7/10, Loss: 0.123970
+GRU Epoch 8/10, Loss: 0.118766
+GRU Epoch 9/10, Loss: 0.114299
+GRU Epoch 10/10, Loss: 0.110512
+
+Обучение LSTM
+LSTM Epoch 1/10, Loss: 0.421720
+LSTM Epoch 2/10, Loss: 0.229592
+LSTM Epoch 3/10, Loss: 0.185869
+LSTM Epoch 4/10, Loss: 0.163128
+LSTM Epoch 5/10, Loss: 0.149324
+LSTM Epoch 6/10, Loss: 0.140347
+LSTM Epoch 7/10, Loss: 0.134248
+LSTM Epoch 8/10, Loss: 0.129792
+LSTM Epoch 9/10, Loss: 0.126360
+LSTM Epoch 10/10, Loss: 0.123644
+
+РЕЗУЛЬТАТЫ НА TEST 
+RNN  MSE: 4687.218 | RMSE: 68.463 | MAE: 47.321 | R2: 0.904
+GRU  MSE: 6042.836 | RMSE: 77.736 | MAE: 55.280 | R2: 0.876
+LSTM MSE: 6795.397 | RMSE: 82.434 | MAE: 57.274 | R2: 0.860
+
+
+РЕЗУЛЬТАТЫ НА TEST
+SimpleRNN: MSE = 4523.956 RMSE = 67.26 MAE = 47.942 R2 = 0.907
+GRU: MSE = 2692.504 RMSE = 51.889 MAE = 35.679 R2 = 0.945
+LSTM: MSE = 3587.436 RMSE = 59.895 MAE = 41.159 R2 = 0.926

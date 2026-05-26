@@ -4,24 +4,32 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
+# ============================================================
+# 1. Настройки
+# ============================================================
+
 DATA_PATH = "bike+sharing+dataset/hour.csv"
+# Если hour.csv лежит рядом со скриптом, путь будет найден автоматически.
+
 FEATURES = ["cnt", "temp", "hum", "windspeed"]
 
 WINDOW_SIZE = 24      # 24 часа = одни сутки истории
-TRAIN_RATIO = 0.8  
+TRAIN_RATIO = 0.8
 
-HIDDEN_SIZE = 10 # скрытое состояние
+HIDDEN_SIZE = 10
 OUTPUT_SIZE = 1
 
 EPOCHS = 10
-LR = 0.001           
+LR = 0.001            # для полного backward лучше меньше, чем 0.01
 CLIP_VALUE = 5.0
 
 SEED = 42
 np.random.seed(SEED)
 
 
-#Загрузка данных
+# ============================================================
+# 2. Загрузка данных
+# ============================================================
 
 def load_data(path):
     if not os.path.exists(path):
@@ -38,7 +46,9 @@ def load_data(path):
     return df
 
 
-# Метрики
+# ============================================================
+# 3. Метрики, реализованные вручную
+# ============================================================
 
 def mse(y_true, y_pred):
     return np.mean((y_true - y_pred) ** 2)
@@ -58,9 +68,15 @@ def r2_score_manual(y_true, y_pred):
     return 1 - ss_res / (ss_tot + 1e-8)
 
 
-#Ручная стандартизация и создание последовательностей
+# ============================================================
+# 4. Ручная стандартизация и создание последовательностей
+# ============================================================
 
 def standardize_train_test(data, train_row_count):
+    """
+    Стандартизация без автоматических preprocessors.
+    mean и std считаются только по train-части, чтобы не было утечки из test.
+    """
     mean = np.mean(data[:train_row_count], axis=0)
     std = np.std(data[:train_row_count], axis=0)
 
@@ -72,6 +88,11 @@ def standardize_train_test(data, train_row_count):
 
 
 def create_sequences(data, window_size):
+    """
+    X[i] = данные за прошлые window_size часов.
+    y[i] = cnt на следующий час.
+    Так как cnt находится в data[:, 0], целевая переменная — data[i + window_size][0].
+    """
     X, y = [], []
 
     for i in range(len(data) - window_size):
@@ -81,7 +102,9 @@ def create_sequences(data, window_size):
     return np.array(X), np.array(y)
 
 
-# Вспомогательные функции
+# ============================================================
+# 5. Вспомогательные функции
+# ============================================================
 
 def sigmoid(x):
     # защита от переполнения exp
@@ -98,7 +121,9 @@ def clip_gradients(*grads):
         np.clip(grad, -CLIP_VALUE, CLIP_VALUE, out=grad)
 
 
-#Собственная реализация RNN 
+# ============================================================
+# 6. Собственная реализация RNN с полным backward
+# ============================================================
 
 class RNN:
     def __init__(self, input_size, hidden_size, output_size, lr=0.001):
@@ -162,7 +187,9 @@ class RNN:
         self.by -= self.lr * dby
 
 
-# Собственная реализация GRU 
+# ============================================================
+# 7. Собственная реализация GRU с полным backward
+# ============================================================
 
 class GRU:
     def __init__(self, input_size, hidden_size, output_size, lr=0.001):
@@ -293,8 +320,9 @@ class GRU:
         self.by -= self.lr * dby
 
 
-
-#Собственная реализация LSTM
+# ============================================================
+# 8. Собственная реализация LSTM с полным backward
+# ============================================================
 
 class LSTM:
     def __init__(self, input_size, hidden_size, output_size, lr=0.001):
@@ -470,8 +498,9 @@ class LSTM:
         self.by -= self.lr * dby
 
 
-
-# Обучение и прогноз
+# ============================================================
+# 9. Обучение и прогноз
+# ============================================================
 
 def train_model(model, X_train, y_train, epochs, model_name):
     losses = []
@@ -511,7 +540,9 @@ def predict(model, X):
     return np.array(predictions)
 
 
-# Графики
+# ============================================================
+# 10. Графики
+# ============================================================
 
 def plot_initial_series(df):
     plt.figure(figsize=(12, 5))
@@ -570,6 +601,9 @@ def plot_single_predictions(y_test_real, predictions_dict, count=200):
         plt.show()
 
 
+# ============================================================
+# 11. Основная программа
+# ============================================================
 
 def main():
     df = load_data(DATA_PATH)
